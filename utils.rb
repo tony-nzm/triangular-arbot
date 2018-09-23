@@ -29,13 +29,13 @@ end
 
 def way1(amount, alt_rur_ask_cost, alt_base_bid_cost, alt_base_bid_vol, base_rur_bid_cost, alt, base, alt_rur_ask_cost_n, alt_rur_ask_vol_n, nonce)
 
-	if (amount/alt_rur_ask_cost < alt_base_bid_vol) && (amount < alt_rur_ask_cost*alt_rur_ask_vol_n)
+  if (amount/alt_rur_ask_cost < alt_base_bid_vol) && (amount < alt_rur_ask_cost*alt_rur_ask_vol_n)
 
-		if amount/alt_rur_ask_cost_n*alt_base_bid_cost*base_rur_bid_cost > amount*1.01
+    if amount/alt_rur_ask_cost_n*alt_base_bid_cost*base_rur_bid_cost > amount*1.01
 
       puts "\n yes \n RUR -> #{alt} -> #{base} -> RUR \n amount #{amount}\n alt_rur_ask_cost #{alt_rur_ask_cost}\n alt_base_bid_cost #{"%.9f" % alt_base_bid_cost}\n alt_base_bid_vol #{alt_base_bid_vol}\n base_rur_bid_cost #{base_rur_bid_cost}\n alt_rur_ask_cost_n #{alt_rur_ask_cost_n} \n alt_rur_ask_vol_n #{alt_rur_ask_vol_n} \n profit #{amount/alt_rur_ask_cost_n*alt_base_bid_cost*base_rur_bid_cost-amount*1.01}"
  
-		  puts Time.now.strftime("%H:%M:%S ")
+      puts Time.now.strftime("%H:%M:%S ")
 
       if Buy
 
@@ -69,35 +69,35 @@ def way1(amount, alt_rur_ask_cost, alt_base_bid_cost, alt_base_bid_vol, base_rur
       abort "check"
       
       end
-		end
-	end
+    end
+  end
 end
 
 # 2) RUR -> BASE -> ALT -> RUR
 
 def way2(amount, base_rur_ask_cost, alt_base_ask_cost, alt_base_ask_vol, alt_rur_bid_cost_n, alt_rur_bid_vol_n, alt, base)
 
-	if (amount/base_rur_ask_cost < alt_base_ask_cost*alt_base_ask_vol) && (amount/base_rur_ask_cost/alt_base_ask_cost < alt_rur_bid_vol_n)
+  if (amount/base_rur_ask_cost < alt_base_ask_cost*alt_base_ask_vol) && (amount/base_rur_ask_cost/alt_base_ask_cost < alt_rur_bid_vol_n)
 
-		if amount/base_rur_ask_cost/alt_base_ask_cost*alt_rur_bid_cost_n > amount*1.01
+    if amount/base_rur_ask_cost/alt_base_ask_cost*alt_rur_bid_cost_n > amount*1.01
 
       puts "\n yes \n RUR -> #{base} -> #{alt} -> RUR \n amount #{amount} \n base_rur_ask_cost #{base_rur_ask_cost.to_f} \n alt_base_ask_cost #{alt_base_ask_cost.to_f} \n alt_base_ask_vol #{alt_base_ask_vol.to_f} \n alt_rur_bid_cost_n #{alt_rur_bid_cost_n} \n alt_rur_bid_vol_n #{alt_rur_bid_vol_n} \n profit #{amount/base_rur_ask_cost/alt_base_ask_cost*alt_rur_bid_cost_n-amount*1.01}"
 			
-		end
-	end
+    end
+  end
 end
 
 
 def get_nonce
 
-	nonce = File.read('nonce.txt').to_i
+  nonce = File.read('nonce.txt').to_i
 
 end
 
 
 def change_nonce(nonce)
 
-	file = File.new('nonce.txt', "w+")
+  file = File.new('nonce.txt', "w+")
   file.puts(nonce)
   file.close
 
